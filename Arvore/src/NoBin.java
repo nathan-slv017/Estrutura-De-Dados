@@ -1,4 +1,4 @@
-public class NoBin<T> {
+public class NoBin<T extends Comparable<T>> {
 
     private T conteudo;
     private NoBin<T> noBinEsq;
@@ -8,6 +8,12 @@ public class NoBin<T> {
         this.conteudo = conteudo;
         this.noBinEsq = this.noBinDir = null;
     }
+
+    public T getConteudo() {
+        return conteudo;
+    }
+
+    NoBin(){}
 
     public NoBin<T> getNoBinEsq() {
         return noBinEsq;
