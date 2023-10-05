@@ -58,4 +58,82 @@ public class ArvoreBinaria<T extends Comparable<T>> {
             exibirPreOrdem(atual.getNoBinDir());
         }
     }
+
+    public void remover(T conteudo){
+        try{
+            NoBin<T> atual = this.raiz;
+            NoBin<T> pai = null;
+            NoBin<T> filho = null;
+            NoBin<T> temp = null;
+
+            while(atual != null && !atual.getConteudo().equals(conteudo)){
+                pai = atual;
+                if(conteudo.compareTo(atual.getConteudo()) < 0) {
+                    atual = atual.getNoBinEsq();
+                }else {
+                    atual = atual.getNoBinDir();
+                }
+            }
+
+            if(atual == null){
+                System.out.println("Conteudo nao encontrado, bloco Try");
+            }
+
+            if(pai == null){
+
+                if(atual.getNoBinDir() == null){
+                    this.raiz = atual.getNoBinEsq();
+                } else if(atual.getNoBinEsq() == null){
+                    this.raiz = atual.getNoBinDir();
+                } else{
+                    for(temp = atual, filho = atual.getNoBinEsq();
+                        filho.getNoBinDir() != null;
+                        temp = filho, filho = filho.getNoBinEsq()
+                    ){
+                        if(filho != atual.getNoBinEsq()) {
+                            temp.setNoBinDir(filho.getNoBinEsq());
+                            filho.setNoBinEsq(raiz.getNoBinEsq());
+                        }
+                    }
+                    filho.setNoBinDir(raiz.getNoBinDir());
+                    raiz = filho;
+                }
+
+            } else if(atual.getNoBinDir() == null){
+                if(pai.getNoBinEsq() == atual){
+                    pai.setNoBinEsq(atual.getNoBinEsq());
+                }else {
+                    pai.setNoBinDir(atual.getNoBinEsq());
+                }
+            } else if(atual.getNoBinEsq() == null){
+                if(pai.getNoBinEsq() == null){
+                    pai.setNoBinEsq(atual.getNoBinDir());
+                } else {
+                    pai.setNoBinDir(atual.getNoBinDir());
+                }
+            }else  {
+               for(
+                       temp = atual, filho = atual.getNoBinEsq();
+                       filho.getNoBinDir() != null;
+                       temp = filho, filho = filho.getNoBinDir()
+               ){
+                   if(filho!= atual.getNoBinEsq()){
+                       temp.setNoBinDir(filho.getNoBinEsq());
+                       filho.setNoBinEsq(atual.getNoBinEsq());
+                   }
+                   filho.setNoBinDir(atual.getNoBinDir());
+                   if(pai.getNoBinEsq() == atual){
+                       pai.setNoBinEsq(filho);
+                   }else {
+                       pai.setNoBinDir(filho);
+                   }
+               }
+
+            }
+
+        } catch(NullPointerException erro){
+            System.out.println("Conteudo nao encontrado, bloco Catch");
+        }
+    }
+
 }
