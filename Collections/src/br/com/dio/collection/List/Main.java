@@ -1,3 +1,5 @@
+package br.com.dio.collection.List;
+
 import java.util.*;
 
 public class Main {
