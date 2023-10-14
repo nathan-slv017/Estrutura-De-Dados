@@ -42,7 +42,7 @@ public class Main {
         Double soma = 0d;
         while(iterator.hasNext()) {
             Double next = iterator.next();
-            soma += next;
+            soma += next ;
         }
        // System.out.println("Exiba a soma dos valores: " + soma);
        // System.out.println("Exiba a média das notas: " + (soma/notas.size()));
