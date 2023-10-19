@@ -29,7 +29,7 @@ public class ListaDuplamenteEncadeada<T> {
         return noAuxiliar;
     }
 
-    
+
 
     public T get(int index){
         return getNo(index).getConteudo();
