@@ -28,7 +28,7 @@ public class Main {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList())
                 .forEach(System.out::println);
-        
+
         List<Integer> ListParesMaioresQue2 = numerosAleatorios.stream()
                 .map(Integer::parseInt)
                 .filter(i -> (i %2 ==0 && i > 2)).collect(Collectors.toList());
